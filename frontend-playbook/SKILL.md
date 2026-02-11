@@ -98,6 +98,7 @@ Load the relevant reference file based on the code being written or reviewed:
 - **Accessibility** → `references/accessibility.md` — WCAG conformance, ARIA usage, testing, VPATs.
 - **Progressive Enhancement** → `references/progressive-enhancement.md` — implementation strategy, browser support tiers, CTM technique.
 - **Architecture & Design** → `references/architecture-and-design.md` — project structure, component patterns, design systems, visual verification, performance.
+- **Icons** → `references/icons.md` — no-emoji rule, Lucide installation, usage patterns, accessibility, common icon mappings, troubleshooting.
 
 ## Quick-Reference Rules (Always Apply)
 
@@ -132,6 +133,120 @@ Load the relevant reference file based on the code being written or reviewed:
 
 ### Written Communication
 - Use inclusive language in all documentation and open-source writing.
+
+## Icons
+
+For full icon rules, installation guides, usage patterns per framework, accessibility, styling, a common icon mapping table, and troubleshooting → read `references/icons.md`.
+
+### No Emojis as Icons
+
+- **MUST NOT** use emojis (e.g. 📁, ✏️, ❌, ➕) as icons, buttons, or UI indicators. Emojis render inconsistently across platforms, are not stylable, and lack proper accessibility semantics.
+- Emojis MAY only be used in **prose text** where they serve a communicative purpose (e.g., a chat message or a friendly greeting), never as functional UI elements.
+- All icons MUST come from the **[Lucide](https://lucide.dev/icons/)** icon library.
+
+### Why Lucide
+
+- Open-source, consistent 24×24 SVG icon set with 1,500+ icons.
+- Fully tree-shakable — only the icons you import are bundled.
+- Framework-specific packages for React, Vue, Svelte, Angular, Solid, Preact, and Astro.
+- Stylable via standard CSS/SVG attributes (`color`, `size`, `strokeWidth`).
+- Accessible — renders inline `<svg>` elements that support `aria-label` and `role` attributes.
+
+### Installation
+
+Choose the package that matches your project's stack:
+
+| Stack | Package | Install |
+|---|---|---|
+| Vanilla HTML/JS | `lucide` | `npm install lucide` |
+| React | `lucide-react` | `npm install lucide-react` |
+| Vue 3 | `lucide-vue-next` | `npm install lucide-vue-next` |
+| Svelte | `lucide-svelte` | `npm install lucide-svelte` |
+| Angular | `lucide-angular` | `npm install lucide-angular` |
+| Solid | `lucide-solid` | `npm install lucide-solid` |
+| Preact | `lucide-preact` | `npm install lucide-preact` |
+| Astro | `@lucide/astro` | `npm install @lucide/astro` |
+
+For CDN usage (no bundler), include via unpkg:
+
+```html
+<script src="https://unpkg.com/lucide@latest"></script>
+```
+
+### Usage
+
+#### Vanilla HTML/JS
+
+Add `data-lucide` attributes to elements in your HTML, then call `createIcons()`:
+
+```html
+<!-- In your HTML -->
+<i data-lucide="menu"></i>
+<i data-lucide="search"></i>
+<i data-lucide="x"></i>
+
+<!-- Before closing </body> -->
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+  lucide.createIcons();
+</script>
+```
+
+With ES Modules (recommended — enables tree-shaking):
+
+```js
+// Only import the icons you actually use
+import { createIcons, Menu, Search, X } from 'lucide';
+
+createIcons({
+  icons: { Menu, Search, X }
+});
+```
+
+#### React
+
+Import icons as components. Each icon is individually tree-shaken:
+
+```jsx
+import { Camera, Trash2, Plus } from 'lucide-react';
+
+const App = () => (
+  <div>
+    <Camera size={24} color="currentColor" />
+    <Trash2 size={20} strokeWidth={1.5} />
+    <Plus size={16} />
+  </div>
+);
+```
+
+Available props: `size` (number, default 24), `color` (string, default `currentColor`), `strokeWidth` (number, default 2), `absoluteStrokeWidth` (boolean).
+
+#### Vue 3
+
+```vue
+<script setup>
+import { Camera, Trash2, Plus } from 'lucide-vue-next';
+</script>
+
+<template>
+  <Camera :size="24" color="currentColor" />
+  <Trash2 :size="20" :stroke-width="1.5" />
+  <Plus :size="16" />
+</template>
+```
+
+### Icon Best Practices
+
+- **Always tree-shake**: Import individual icons, not the entire library.
+  - ✅ `import { Menu, X } from 'lucide-react';`
+  - ❌ `import * as icons from 'lucide-react';`
+- **Use `currentColor`** for icon colour so they inherit from the parent's CSS `color` property.
+- **Pair icons with accessible labels**: If an icon is the only content of a button, add `aria-label` to the button.
+  ```html
+  <button aria-label="Close"><i data-lucide="x"></i></button>
+  ```
+- **Consistent sizing**: Stick to the design system's size scale (e.g. 16, 20, 24) rather than arbitrary pixel values.
+- **Browse available icons** at [lucide.dev/icons](https://lucide.dev/icons/) — use the search to find the right icon by name or keyword.
 
 ## RFC 2119 Key Words
 
