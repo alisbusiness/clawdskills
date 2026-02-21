@@ -99,6 +99,7 @@ Load the relevant reference file based on the code being written or reviewed:
 - **Progressive Enhancement** → `references/progressive-enhancement.md` — implementation strategy, browser support tiers, CTM technique.
 - **Architecture & Design** → `references/architecture-and-design.md` — project structure, component patterns, design systems, visual verification, performance.
 - **Icons** → `references/icons.md` — no-emoji rule, Lucide installation, usage patterns, accessibility, common icon mappings, troubleshooting.
+- **Cinematic Landing Page Builder** → `references/cinematic-landing-page.md` — high-fidelity landing page generation system with aesthetic presets and fixed component architecture.
 
 ## Quick-Reference Rules (Always Apply)
 
@@ -247,6 +248,18 @@ import { Camera, Trash2, Plus } from 'lucide-vue-next';
   ```
 - **Consistent sizing**: Stick to the design system's size scale (e.g. 16, 20, 24) rather than arbitrary pixel values.
 - **Browse available icons** at [lucide.dev/icons](https://lucide.dev/icons/) — use the search to find the right icon by name or keyword.
+
+## Cinematic Landing Page Builder
+
+For high-fidelity, "1:1 Pixel Perfect" landing page generation using cinematic design systems, GSAP animations, and interactive functional artifacts → read `references/cinematic-landing-page.md`.
+
+### Core Objective
+
+Build "digital instruments" where every scroll is intentional and every animation is weighted. This system eradicates generic AI patterns via:
+- **Aesthetic Presets**: Pre-defined design systems (Organic Tech, Midnight Luxe, Brutalist Signal, Vapor Clinic).
+- **Interactive Artifacts**: Functional micro-UIs (Shufflers, Typewriters, Schedulers).
+- **Animation Excellence**: GSAP-driven lifecycles with strict easing and stagger rules.
+- **Fixed Design System**: Global noise overlays, pill-shaped containers, and magnetic micro-interactions.
 
 ## RFC 2119 Key Words
 
